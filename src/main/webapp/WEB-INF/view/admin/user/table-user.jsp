@@ -35,16 +35,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>
-                            <button type="button" class="btn btn-success">View</button>
-                            <button type="button" class="btn btn-warning">Update</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
+                    <c:forEach var="user" items="${users}" >   <%-- var="user": tung user trong list users, items="${users}": list users (bien duoc truyen tu controller)--%>
+                        <tr>
+                            <th>${user.id}</th>
+                            <td>${user.email}</td>
+                            <td>${user.fullName}</td>
+                            <td>
+                                <button type="button" class="btn btn-success">View</button>
+                                <button type="button" class="btn btn-warning">Update</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

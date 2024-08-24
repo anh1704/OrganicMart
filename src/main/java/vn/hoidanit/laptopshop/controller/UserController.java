@@ -31,20 +31,23 @@ public class UserController {
 
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) { // Model là đối tượng để truyền dữ liệu từ controller sang view
+        List<User> allUsers = this.userService.getAllUsers();
+        model.addAttribute("users", allUsers);  // users: giá trị truyền sang view  allUsers: giá trị cần truyền (gan vao key)
         return "admin/user/table-user";  // đường dẫn đến file view
     }
 
     // đến trang tạo mới người dùng (hiển thị form)
     @RequestMapping("/admin/user/create")  // method: GET
     public String getCreateUserPage(Model model) {
+        model.addAttribute("newUser", new User());  // newUser: giá trị truyền sang view,  new User(): giá trị cần truyền (gan vao key)
         return "admin/user/create";  // duong dan den file view
     }
 
     // tạo mới người dùng (xử lý form, lưu vào database)
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String handleCreateUser(Model model, @ModelAttribute("newUser") User user) { // form - kieu gia tri - ten bien
-        this.userService.handleSaveUser(user);
-        return "hello";
+        this.userService.handleSaveUser(user); // lưu người dùng vào database
+        return "redirect:/admin/user";  // mapping vao duong dan /admin/user
     }
 }
 
