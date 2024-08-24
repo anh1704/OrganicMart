@@ -2,9 +2,7 @@ package vn.hoidanit.laptopshop.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.repository.UserRepository;
 import vn.hoidanit.laptopshop.service.UserService;
@@ -29,7 +27,7 @@ public class UserController {
         return "hello";
     }
 
-    @RequestMapping("/admin/user")
+    @GetMapping("/admin/user")
     public String getUserPage(Model model) { // Model là đối tượng để truyền dữ liệu từ controller sang view
         List<User> allUsers = this.userService.getAllUsers();
         model.addAttribute("users", allUsers);  // users: giá trị truyền sang view  allUsers: giá trị cần truyền (gan vao key)
@@ -37,17 +35,30 @@ public class UserController {
     }
 
     // đến trang tạo mới người dùng (hiển thị form)
-    @RequestMapping("/admin/user/create")  // method: GET
+    @GetMapping("/admin/user/create")
     public String getCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());  // newUser: giá trị truyền sang view,  new User(): giá trị cần truyền (gan vao key)
         return "admin/user/create";  // duong dan den file view
     }
 
     // tạo mới người dùng (xử lý form, lưu vào database)
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String handleCreateUser(Model model, @ModelAttribute("newUser") User user) { // form - kieu gia tri - ten bien
+    @PostMapping( "/admin/user/create")
+    public String handleCreateUser(@ModelAttribute("newUser") User user) { // form - kieu gia tri - ten bien
         this.userService.handleSaveUser(user); // lưu người dùng vào database
         return "redirect:/admin/user";  // mapping vao duong dan /admin/user
+    }
+
+    // lay thong tin chi tiet nguoi dung
+    @GetMapping("/admin/user/{id}")
+    public String getUserDetail(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("user", this.userService.getUserById(id));
+//        model.addAttribute("userID", id);
+        return "admin/user/user-detail";
+    }
+
+    @DeleteMapping("/admin/user/delete/{id}")
+    public void deleteUser(@PathVariable("id") Long id) {
+        this.userService.deleteUserById(id);
     }
 }
 
