@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,7 @@
             <h3>Create a user</h3>
             <hr />
             <%--@elvariable id="newUser" type=""--%>
-            <form:form method="post" action="/admin/user/create1" modelAttribute="newUser">
+            <form:form method="post" action="/admin/user/create" modelAttribute="newUser">
                 <div class="mb-3">
                     <label class="form-label">Email: </label>
                     <form:input type="email" class="form-control" path="email" />
