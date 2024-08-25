@@ -32,7 +32,22 @@ public class UserService {
         return this.userRepository.findById(id).orElse(null);
     }
 
+    public User updateUser(User user) {
+        if (user.getId() != null) {
+            User existingUser = this.userRepository.findById(user.getId()).orElse(null);
+            if (existingUser != null) {
+                existingUser.setFullName(user.getFullName());
+                existingUser.setAddress(user.getAddress());
+                existingUser.setPhone(user.getPhone());
+                return this.userRepository.save(existingUser);
+            }
+        }
+        return this.userRepository.save(user);
+    }
+
     public void deleteUserById(Long id) {
         this.userRepository.deleteById(id);
     }
+
+
 }

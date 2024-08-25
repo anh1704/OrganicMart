@@ -56,9 +56,33 @@ public class UserController {
         return "admin/user/user-detail";
     }
 
-    @DeleteMapping("/admin/user/delete/{id}")
-    public void deleteUser(@PathVariable("id") Long id) {
-        this.userService.deleteUserById(id);
+    // get page update user
+    @GetMapping("/admin/user/update/{id}")
+    public String getUpdateUserPage(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("updateUser", this.userService.getUserById(id));  // updateUser: giá trị truyền sang view,  this.userService.getUserById(id): current user
+        return "admin/user/update";
+    }
+
+    // update user
+    @PostMapping("/admin/user/update")
+    public String handleUpdateUser(Model model, @ModelAttribute("updateUser") User user) {  // @ModelAttribute("updateUser"): lay gia tri tu form
+        this.userService.updateUser(user);
+        return "redirect:/admin/user";
+    }
+
+    // den trang xoa nguoi dung
+    @GetMapping("/admin/user/delete/{id}")
+    public String getDeleteUserPage(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("id", id);
+        model.addAttribute("newUser", new User());
+        return "admin/user/delete";
+    }
+
+    // xoa nguoi dung
+    @PostMapping("/admin/user/delete")
+    public String handleDeleteUser(@ModelAttribute("newUser") User user) {
+        this.userService.deleteUserById(user.getId());
+        return "redirect:/admin/user";
     }
 }
 
