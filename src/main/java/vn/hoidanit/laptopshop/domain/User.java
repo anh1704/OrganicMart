@@ -1,16 +1,16 @@
 package vn.hoidanit.laptopshop.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "users")
 public class User {
 
     @Id
@@ -21,6 +21,16 @@ public class User {
     private String fullName;
     private String address;
     private String phone;
+    private String avatar;
+
+    // User many -> to one -> Role (nhieu user thuoc ve 1 role)
+    @ManyToOne
+    @JoinColumn(name = "role_id")   // khoa ngoai - foreign key
+    private Role role;
+
+    // 1 user co nhieu order
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
     @Override
     public String toString() {
@@ -31,6 +41,7 @@ public class User {
                 ", fullName='" + fullName + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }
