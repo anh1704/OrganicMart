@@ -1,4 +1,4 @@
-package vn.hoidanit.laptopshop.controller;
+package vn.hoidanit.laptopshop.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +31,7 @@ public class UserController {
     public String getUserPage(Model model) { // Model là đối tượng để truyền dữ liệu từ controller sang view
         List<User> allUsers = this.userService.getAllUsers();
         model.addAttribute("users", allUsers);  // users: giá trị truyền sang view  allUsers: giá trị cần truyền (gan vao key)
-        return "admin/user/table-user";  // đường dẫn đến file view
+        return "admin/user/show";  // đường dẫn đến file view
     }
 
     // đến trang tạo mới người dùng (hiển thị form)
@@ -53,7 +53,7 @@ public class UserController {
     public String getUserDetail(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", this.userService.getUserById(id));
 //        model.addAttribute("userID", id);
-        return "admin/user/user-detail";
+        return "admin/user/detail";
     }
 
     // get page update user
