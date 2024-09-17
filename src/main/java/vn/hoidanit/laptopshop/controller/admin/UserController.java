@@ -1,21 +1,27 @@
 package vn.hoidanit.laptopshop.controller.admin;
 
+import jakarta.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.repository.UserRepository;
+import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.UserService;
 
+import java.io.*;
 import java.util.List;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
+    private final UploadService uploadService;
 
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserService userService, UploadService uploadService) {
         this.userService = userService;
+        this.uploadService = uploadService;
     }
 
     @RequestMapping("/")
@@ -43,7 +49,8 @@ public class UserController {
 
     // tạo mới người dùng (xử lý form, lưu vào database)
     @PostMapping( "/admin/user/create")
-    public String handleCreateUser(@ModelAttribute("newUser") User user) { // form - kieu gia tri - ten bien
+    public String handleCreateUser(@ModelAttribute("newUser") User user, @RequestParam("imageFile") MultipartFile file) { // form - kieu gia tri - ten bien
+        String avatar = this.uploadService.handleUploadFile(file, "avatar");
         this.userService.handleSaveUser(user); // lưu người dùng vào database
         return "redirect:/admin/user";  // mapping vao duong dan /admin/user
     }
