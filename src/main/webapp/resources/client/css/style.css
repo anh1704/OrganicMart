@@ -323,7 +323,7 @@
 
 /*** vesitable Start ***/
 .vesitable .vesitable-item {
-    height: 100%;
+    height: auto;
     transition: 0.5s;
 }
 
