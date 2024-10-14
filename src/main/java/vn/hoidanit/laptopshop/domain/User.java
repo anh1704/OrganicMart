@@ -3,6 +3,7 @@ package vn.hoidanit.laptopshop.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -22,23 +23,21 @@ public class User {
     private Long id;
 
     @NotNull
-    @Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$") // kiem tra email hop le
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$") // kiem tra email hop le
     private String email;
 
-    @NotNull
-    @Min(3)
+    @NotEmpty(message = "Password can't be empty")
     private String password;
 
-    @NotNull
+    @NotEmpty(message = "Full name can't be empty")
     private String fullName;
 
-    @NotNull
+    @NotEmpty(message = "Address can't be empty")
     private String address;
 
-    @NotNull
+    @NotEmpty(message = "Number phone can't be empty")
     private String phone;
 
-    @NotNull
     private String avatar;
 
     // User many -> to one -> Role (nhieu user thuoc ve 1 role)

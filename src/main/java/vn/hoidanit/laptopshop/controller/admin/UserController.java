@@ -57,20 +57,22 @@ public class UserController {
     public String handleCreateUser(
             @ModelAttribute("newUser")
             @Valid User user,
-            BindingResult bindingResult,
+            BindingResult newUserBindingResult,
             @RequestParam("imageFile") MultipartFile file
     ) { // form - kieu gia tri - ten bien
 
-        List<FieldError> errors = bindingResult.getFieldErrors();
+        List<FieldError> errors = newUserBindingResult.getFieldErrors();
         for (FieldError error : errors) {
-            System.out.println(error.getField() + " - " + error.getDefaultMessage());
+            System.out.println(">>>>>> " + error.getField() + " - " + error.getDefaultMessage());
+        }
+
+        // validate
+        if (newUserBindingResult.hasErrors()) {
+            return "admin/user/create";
         }
 
         String avatar = this.uploadService.handleUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
-
-        // validate
-
 
         user.setAvatar(avatar);
         user.setPassword(hashPassword);
