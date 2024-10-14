@@ -1,7 +1,11 @@
 package vn.hoidanit.laptopshop.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.List;
 
@@ -16,11 +20,25 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$") // kiem tra email hop le
     private String email;
+
+    @NotNull
+    @Min(3)
     private String password;
+
+    @NotNull
     private String fullName;
+
+    @NotNull
     private String address;
+
+    @NotNull
     private String phone;
+
+    @NotNull
     private String avatar;
 
     // User many -> to one -> Role (nhieu user thuoc ve 1 role)

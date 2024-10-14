@@ -1,9 +1,12 @@
 package vn.hoidanit.laptopshop.controller.admin;
 
+import jakarta.validation.Valid;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import vn.hoidanit.laptopshop.domain.User;
@@ -51,13 +54,29 @@ public class UserController {
 
     // tạo mới người dùng (xử lý form, lưu vào database)
     @PostMapping( "/admin/user/create")
-    public String handleCreateUser(@ModelAttribute("newUser") User user, @RequestParam("imageFile") MultipartFile file) { // form - kieu gia tri - ten bien
+    public String handleCreateUser(
+            @ModelAttribute("newUser")
+            @Valid User user,
+            BindingResult bindingResult,
+            @RequestParam("imageFile") MultipartFile file
+    ) { // form - kieu gia tri - ten bien
+
+        List<FieldError> errors = bindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(error.getField() + " - " + error.getDefaultMessage());
+        }
+
         String avatar = this.uploadService.handleUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
+
+        // validate
+
 
         user.setAvatar(avatar);
         user.setPassword(hashPassword);
         user.setRole(this.userService.getRoleByName(user.getRole().getName()));
+
+        // save
         this.userService.handleSaveUser(user); // lưu người dùng vào database
         return "redirect:/admin/user";  // mapping vao duong dan /admin/user
     }
