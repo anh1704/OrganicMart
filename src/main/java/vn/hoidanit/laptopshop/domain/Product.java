@@ -12,31 +12,15 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String name;
-    private Double price;
-    private String image;
-    private String detailDescription;
-    private String shortDescription;
-    private Long quantity;
-    private Long sold;
-    private String factory;
-    private String target;
+
+    @Column(name = "description", columnDefinition = "VARCHAR(1000)")
+    private String description;
+    private double price;
+    private int quantity;
+    private String category;
+    private String imagePath;
 
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", image='" + image + '\'' +
-                ", detailDescription='" + detailDescription + '\'' +
-                ", shortDescription='" + shortDescription + '\'' +
-                ", quantity=" + quantity +
-                ", sold=" + sold +
-                ", factory='" + factory + '\'' +
-                ", target='" + target + '\'' +
-                '}';
-    }
 }
