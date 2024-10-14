@@ -52,34 +52,31 @@
                                     class="row"
                                     enctype="multipart/form-data"
                             >
-                                <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label">Email: </label>
-                                    <form:input type="email" class="form-control" path="email" />
+                                <div class="mb-3 col-12 col-md-12">
+                                    <label class="form-label">Name </label>
+                                    <form:input type="text" class="form-control" path="name" />
+                                </div>
+                                <div class="mb-3 col-12 col-md-12">
+                                    <label class="form-label">Description</label>
+                                    <form:textarea type="text" class="form-control"  path="description"/>
                                 </div>
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label">Password</label>
-                                    <form:input type="password" class="form-control"  path="password"/>
+                                    <label class="form-label">Price</label>
+                                    <form:input type="number" class="form-control" path="price" />
                                 </div>
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label">Phone number</label>
-                                    <form:input type="text" class="form-control" path="phone" />
+                                    <label class="form-label">Quantity</label>
+                                    <form:input type="number" class="form-control" path="quantity" />
                                 </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label">Full name</label>
-                                    <form:input type="text" class="form-control" path="fullName" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Address</label>
-                                    <form:input type="text" class="form-control" path="address" />
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label">Role:</label>
-                                    <form:select class="form-select" path="role.name">
-                                        <form:option value="ADMIN">ADMIN</form:option>
-                                        <form:option value="USER">USER</form:option>
+                                <div class="mb-3 col-12 col-md-12">
+                                    <label class="form-label">Category:</label>
+                                    <form:select class="form-select" path="category">
+                                        <form:option value="Rau, củ, quả hữu cơ">Rau, củ, quả hữu cơ</form:option>
+                                        <form:option value="Trái cây">Trái cây</form:option>
+                                        <form:option value="Thịt, cá, hải sản">Thịt, cá, hải sản</form:option>
                                     </form:select>
                                 </div>
-                                <div class="mb-3 col-12 col-md-6">
+                                <div class="mb-3 col-12 col-md-12">
                                     <label for="avatarFile" class="form-label">Image: </label>
                                     <input class="form-control" type="file" id="avatarFile" accept=".png, .jpg, .jpeg" name="imageFile" />
                                 </div>
