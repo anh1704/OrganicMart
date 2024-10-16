@@ -39,8 +39,8 @@ public class Product {
     @NotNull
     private String category;
 
-    @Column(name = "image_path")
-    private String imageProduct;
+//    @Column(name = "image_path")
+    private String image;
 
     @Override
     public String toString() {
@@ -51,7 +51,7 @@ public class Product {
                 ", price=" + price +
                 ", quantity=" + quantity +
                 ", category='" + category + '\'' +
-                ", imagePath='" + imageProduct + '\'' +
+                ", imagePath='" + image + '\'' +
                 '}';
     }
 }

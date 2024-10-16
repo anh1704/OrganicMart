@@ -1,5 +1,6 @@
 package vn.hoidanit.laptopshop.service;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.repository.ProductRepository;
@@ -29,5 +30,9 @@ public class ProductService {
 
     public void deleteProductById(Long id) {
         this.productRepository.deleteById(id);
+    }
+
+    public void updateProduct(@Valid Product product) {
+        this.productRepository.save(product);
     }
 }

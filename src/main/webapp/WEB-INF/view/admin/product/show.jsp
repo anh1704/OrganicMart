@@ -58,13 +58,12 @@
                                                                     <td>${product.quantity}</td>
                                                                     <td>${product.category}</td>
                                                                     <td>
-                                                                        <img src=/images/product/"${product.image}" alt="${product.name}" style="max-width: 100px; max-height: 100px;" />
+                                                                        <img src="/images/product/${product.image}" alt="${product.name}" style="max-width: 100px; max-height: 100px;" />
                                                                     </td>
                                                                     <td>
                                                                         <a href="/admin/product/${product.id}" class="btn btn-success">View</a>
                                                                         <a href="/admin/product/update/${product.id}" class="btn btn-warning">Update</a>
                                                                         <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete(${product.id})">Delete</a>
-
                                                                     </td>
                                                                 </tr>
                                                             </c:forEach>
