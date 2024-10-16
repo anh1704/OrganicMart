@@ -83,7 +83,7 @@ public class UserController {
         return "redirect:/admin/user";  // mapping vao duong dan /admin/user
     }
 
-    // lay thong tin chi tiet nguoi dung
+    // lay thong tin va den trang chi tiet nguoi dung
     @GetMapping("/admin/user/{id}")
     public String getUserDetail(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", this.userService.getUserById(id));
