@@ -25,7 +25,7 @@ public class Product {
 
     @NotNull
     @NotEmpty(message = "Mô tả không được để trống")
-    @Column(name = "description", columnDefinition = "VARCHAR(1000)")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String description;
 
     @NotNull
