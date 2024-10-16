@@ -58,7 +58,7 @@
                                             <td>
                                                 <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
                                                 <a href="/admin/user/update/${user.id}" class="btn btn-warning">Update</a>
-                                                <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Delete</a>
+                                                <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete(${user.id})">Delete</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -77,6 +77,24 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(userId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/admin/user/delete/' + userId;
+            }
+        })
+    }
+</script>
 </body>
 
 </html>

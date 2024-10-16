@@ -53,7 +53,7 @@ public class ProductController {
 
         // upload image
         String image = this.uploadService.handleUploadFile(file, "product");
-        product.setImageProduct(image);
+        product.setImage(image);
 
         System.out.println(product);
 
@@ -69,9 +69,46 @@ public class ProductController {
         return "admin/product/detail";
     }
 
+    // delete product
     @GetMapping("/admin/product/delete/{id}")
     public String deleteProduct(@PathVariable("id") Long id){
         this.productService.deleteProductById(id);
+        return "redirect:/admin/product";
+    }
+
+    // go to update product page
+    @GetMapping("/admin/product/update/{id}")
+    public String getUpdateProductPage(Model model, @PathVariable("id") Long id){
+        model.addAttribute("newProduct", this.productService.getProductById(id));
+        return "admin/product/update";
+    }
+
+    @PostMapping("/admin/product/update")
+    public String handleUpdateProduct(
+            @ModelAttribute("newProduct") @Valid Product product,
+            BindingResult newProductBindingResult,
+            @RequestParam("imageFile") MultipartFile file
+    ){
+        // validate
+        if(newProductBindingResult.hasErrors()){
+            return "admin/product/update";
+        }
+
+        Product currentProduct = this.productService.getProductById(product.getId());
+        if (currentProduct != null) {
+            // update image
+            if (!file.isEmpty()) {
+                String image = this.uploadService.handleUploadFile(file, "product");
+                product.setImage(image);
+            }
+            currentProduct.setName(product.getName());
+            currentProduct.setPrice(product.getPrice());
+            currentProduct.setQuantity(product.getQuantity());
+            currentProduct.setDescription(product.getDescription());
+            currentProduct.setCategory(product.getCategory());
+
+            this.productService.updateProduct(currentProduct);
+        }
         return "redirect:/admin/product";
     }
 }

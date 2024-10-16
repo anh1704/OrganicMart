@@ -105,19 +105,12 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
-    // den trang xoa nguoi dung
+    // delete user
     @GetMapping("/admin/user/delete/{id}")
-    public String getDeleteUserPage(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("id", id);
-        model.addAttribute("newUser", new User());
-        return "admin/user/delete";
-    }
-
-    // xoa nguoi dung
-    @PostMapping("/admin/user/delete")
-    public String handleDeleteUser(@ModelAttribute("newUser") User user) {
-        this.userService.deleteUserById(user.getId());
+    public String deleteUser(@PathVariable("id") Long id) {
+        this.userService.deleteUserById(id);
         return "redirect:/admin/user";
     }
+
 }
 
