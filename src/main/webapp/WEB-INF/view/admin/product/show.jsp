@@ -45,24 +45,29 @@
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Category</th>
                                         <th scope="col">Image</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                     </thead>
-                                    <%--                        <tbody>--%>
-                                    <%--                        <c:forEach var="user" items="${users}" >   &lt;%&ndash; var="user": tung user trong list users, items="${users}": list users (bien duoc truyen tu controller)&ndash;%&gt;--%>
-                                    <%--                            <tr>--%>
-                                    <%--                                <th>${user.id}</th>--%>
-                                    <%--                                <td>${user.email}</td>--%>
-                                    <%--                                <td>${user.fullName}</td>--%>
-                                    <%--                                <td>${user.role.name}</td>--%>
-                                    <%--                                <td>${user.address}</td>--%>
-                                    <%--                                <td>--%>
-                                    <%--                                    <a href="/admin/user/${user.id}" class="btn btn-success">View</a>--%>
-                                    <%--                                    <a href="/admin/user/update/${user.id}" class="btn btn-warning">Update</a>--%>
-                                    <%--                                    <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Delete</a>--%>
-                                    <%--                                </td>--%>
-                                    <%--                            </tr>--%>
-                                    <%--                        </c:forEach>--%>
-                                    <%--                        </tbody>--%>
+                                                            <tbody>
+                                                            <c:forEach var="product" items="${products}" >   <%-- var="user": tung user trong list users, items="${users}": list users (bien duoc truyen tu controller)--%>
+                                                                <tr>
+                                                                    <th>${product.id}</th>
+                                                                    <td>${product.name}</td>
+                                                                    <td style="width: 500px">${product.description}</td>
+                                                                    <td>${product.price}</td>
+                                                                    <td>${product.quantity}</td>
+                                                                    <td>${product.category}</td>
+                                                                    <td>
+                                                                        <img src=/images/product/"${product.imageProduct}" alt="${product.name}" style="max-width: 100px; max-height: 100px;" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="/admin/product/${product.id}" class="btn btn-success">View</a>
+                                                                        <a href="/admin/product/update/${product.id}" class="btn btn-warning">Update</a>
+                                                                        <a href="/admin/product/delete/${product.id}" class="btn btn-danger">Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                            </tbody>
                                 </table>
                             </div>
                         </div>

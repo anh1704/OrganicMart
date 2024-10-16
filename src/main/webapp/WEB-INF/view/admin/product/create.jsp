@@ -17,11 +17,11 @@
     </script>
     <script>
         $(document).ready(function() {
-            const avatarFile = $("#avatarFile");
-            avatarFile.change(function(e) {
+            const productFile = $("#productFile");
+            productFile.change(function(e) {
                 const imgURL = URL.createObjectURL(e.target.files[0]);
-                $("#avatarPreview").attr("src", imgURL);
-                $("#avatarPreview").css("display", "block");
+                $("#productPreview").attr("src", imgURL);
+                $("#productPreview").css("display", "block");
             });
         });
     </script>
@@ -53,21 +53,41 @@
                                     enctype="multipart/form-data"
                             >
                                 <div class="mb-3 col-12 col-md-12">
+                                    <c:set var="errorName">
+                                        <form:errors path="name" cssClass="invalid-feedback" />
+                                    </c:set>
                                     <label class="form-label">Name </label>
-                                    <form:input type="text" class="form-control" path="name" />
+                                    <form:input type="text" class="form-control ${not empty errorName ? 'is-invalid' : ''}" path="name" />
+                                    ${errorName}
                                 </div>
+
                                 <div class="mb-3 col-12 col-md-12">
+                                    <c:set var="errorDescription">
+                                        <form:errors path="description" cssClass="invalid-feedback" />
+                                    </c:set>
                                     <label class="form-label">Description</label>
-                                    <form:textarea type="text" class="form-control"  path="description"/>
+                                    <form:textarea type="text" class="form-control ${not empty errorDescription ? 'is-invalid' : ''}"  path="description"/>
+                                    ${errorDescription}
                                 </div>
+
                                 <div class="mb-3 col-12 col-md-6">
+                                    <c:set var="errorPrice">
+                                        <form:errors path="price" cssClass="invalid-feedback" />
+                                    </c:set>
                                     <label class="form-label">Price</label>
-                                    <form:input type="number" class="form-control" path="price" />
+                                    <form:input type="number" class="form-control ${not empty errorDescription ? 'is-invalid' : ''}" path="price" />
+                                    ${errorPrice}
                                 </div>
+
                                 <div class="mb-3 col-12 col-md-6">
+                                    <c:set var="errorQuantity">
+                                        <form:errors path="quantity" cssClass="invalid-feedback" />
+                                    </c:set>
                                     <label class="form-label">Quantity</label>
-                                    <form:input type="number" class="form-control" path="quantity" />
+                                    <form:input type="number" class="form-control ${not empty errorQuantity ? 'is-invalid' : ''}" path="quantity" />
+                                    ${errorQuantity}
                                 </div>
+
                                 <div class="mb-3 col-12 col-md-12">
                                     <label class="form-label">Category:</label>
                                     <form:select class="form-select" path="category">
@@ -76,12 +96,13 @@
                                         <form:option value="Thịt, cá, hải sản">Thịt, cá, hải sản</form:option>
                                     </form:select>
                                 </div>
+
                                 <div class="mb-3 col-12 col-md-12">
-                                    <label for="avatarFile" class="form-label">Image: </label>
-                                    <input class="form-control" type="file" id="avatarFile" accept=".png, .jpg, .jpeg" name="imageFile" />
+                                    <label for="productFile" class="form-label">Image: </label>
+                                    <input class="form-control" type="file" id="productFile" accept=".png, .jpg, .jpeg, .webp" name="imageFile" />
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <img style="max-height: 250px; display: none" alt="avatar preview" id="avatarPreview" />
+                                    <img style="max-height: 250px; display: none" alt="product preview" id="productPreview" />
                                 </div>
                                 <div class="col-12 mb-5">
                                     <button type="submit" class="btn btn-primary">Submit</button>
