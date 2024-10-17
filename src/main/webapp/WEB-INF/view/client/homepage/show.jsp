@@ -107,7 +107,11 @@
                                         </div>
                                         <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">${product.category}</div>
                                         <div class="p-4 border-top-0">
-                                            <h4>${product.name}</h4>
+                                            <h4>
+                                                <a href="/product/${product.id}">
+                                                        ${product.name}
+                                                </a>
+                                            </h4>
                                             <p>${product.shortDescription}</p>
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0">
