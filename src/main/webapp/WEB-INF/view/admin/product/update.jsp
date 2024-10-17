@@ -18,7 +18,7 @@
     <script>
         $(document).ready(function() {
             const productFile = $("#productFile");
-            const orgImage = "${newProduct.image}";
+            const orgImage = "${updateProduct.image}";
             if (orgImage) {
                 const imgURL = "/images/product/" + orgImage;
                 $("#productPreview").attr("src", imgURL);
@@ -51,14 +51,18 @@
                         <div class="col-md-6 col-12 mx-auto">
                             <h1 class="text-primary">Update a product</h1>
                             <hr />
-                            <%--@elvariable id="newProduct" type=""--%>
+                            <%--@elvariable id="updateProduct" type=""--%>
                             <form:form
                                     method="post"
-                                    action="/admin/product/create"
-                                    modelAttribute="newProduct"
+                                    action="/admin/product/update"
+                                    modelAttribute="updateProduct"
                                     class="row"
                                     enctype="multipart/form-data"
                             >
+                                <div class="mb-3" style="display: none">
+                                    <label class="form-label">ID</label>
+                                    <form:input type="text" class="form-control" path="id" />
+                                </div>
                                 <div class="mb-3 col-12 col-md-12">
                                     <c:set var="errorName">
                                         <form:errors path="name" cssClass="invalid-feedback" />
@@ -69,12 +73,21 @@
                                 </div>
 
                                 <div class="mb-3 col-12 col-md-12">
-                                    <c:set var="errorDescription">
-                                        <form:errors path="description" cssClass="invalid-feedback" />
+                                    <c:set var="errorLongDesc">
+                                        <form:errors path="longDescription" cssClass="invalid-feedback" />
                                     </c:set>
-                                    <label class="form-label">Description</label>
-                                    <form:textarea type="text" class="form-control ${not empty errorDescription ? 'is-invalid' : ''}"  path="description"/>
-                                        ${errorDescription}
+                                    <label class="form-label">Long Description</label>
+                                    <form:textarea type="text" class="form-control ${not empty errorLongDesc ? 'is-invalid' : ''}"  path="longDescription"/>
+                                        ${errorLongDesc}
+                                </div>
+
+                                <div class="mb-3 col-12 col-md-12">
+                                    <c:set var="errorShortDesc">
+                                        <form:errors path="shortDescription" cssClass="invalid-feedback" />
+                                    </c:set>
+                                    <label class="form-label">Short Description</label>
+                                    <form:textarea type="text" class="form-control ${not empty errorShortDesc ? 'is-invalid' : ''}"  path="shortDescription"/>
+                                        ${errorShortDesc}
                                 </div>
 
                                 <div class="mb-3 col-12 col-md-6">

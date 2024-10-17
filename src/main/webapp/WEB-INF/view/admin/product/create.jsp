@@ -62,20 +62,30 @@
                                 </div>
 
                                 <div class="mb-3 col-12 col-md-12">
-                                    <c:set var="errorDescription">
-                                        <form:errors path="description" cssClass="invalid-feedback" />
+                                    <c:set var="errorLongDesc">
+                                        <form:errors path="longDescription" cssClass="invalid-feedback" />
                                     </c:set>
-                                    <label class="form-label">Description</label>
-                                    <form:textarea type="text" class="form-control ${not empty errorDescription ? 'is-invalid' : ''}"  path="description"/>
-                                    ${errorDescription}
+                                    <label class="form-label"> Long description</label>
+                                    <form:textarea type="text" class="form-control ${not empty errorLongDesc ? 'is-invalid' : ''}" path="longDescription"/>
+                                    ${errorLongDesc}
                                 </div>
+
+                                <div class="mb-3 col-12 col-md-12">
+                                    <c:set var="errorShortDesc">
+                                        <form:errors path="shortDescription" cssClass="invalid-feedback" />
+                                    </c:set>
+                                    <label class="form-label">Short description</label>
+                                    <form:textarea type="text" class="form-control ${not empty errorShortDesc ? 'is-invalid' : ''}" path="shortDescription"/>
+                                        ${errorShortDesc}
+                                </div>
+
 
                                 <div class="mb-3 col-12 col-md-6">
                                     <c:set var="errorPrice">
                                         <form:errors path="price" cssClass="invalid-feedback" />
                                     </c:set>
                                     <label class="form-label">Price</label>
-                                    <form:input type="number" class="form-control ${not empty errorDescription ? 'is-invalid' : ''}" path="price" />
+                                    <form:input type="number" class="form-control ${not empty errorPrice ? 'is-invalid' : ''}" path="price" />
                                     ${errorPrice}
                                 </div>
 

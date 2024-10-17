@@ -53,7 +53,7 @@
                                                                 <tr>
                                                                     <th>${product.id}</th>
                                                                     <td>${product.name}</td>
-                                                                    <td style="width: 500px">${product.description}</td>
+                                                                    <td style="width: 500px">${product.longDescription}</td>
                                                                     <td>${product.price}</td>
                                                                     <td>${product.quantity}</td>
                                                                     <td>${product.category}</td>

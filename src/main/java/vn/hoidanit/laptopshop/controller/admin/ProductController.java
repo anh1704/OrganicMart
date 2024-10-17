@@ -78,14 +78,14 @@ public class ProductController {
 
     // go to update product page
     @GetMapping("/admin/product/update/{id}")
-    public String getUpdateProductPage(Model model, @PathVariable("id") Long id){
-        model.addAttribute("newProduct", this.productService.getProductById(id));
+    public String getUpdateProductPage(Model model, @PathVariable Long id){
+        model.addAttribute("updateProduct", this.productService.getProductById(id));
         return "admin/product/update";
     }
 
     @PostMapping("/admin/product/update")
     public String handleUpdateProduct(
-            @ModelAttribute("newProduct") @Valid Product product,
+            @ModelAttribute("updateProduct") @Valid Product product,
             BindingResult newProductBindingResult,
             @RequestParam("imageFile") MultipartFile file
     ){
@@ -99,15 +99,17 @@ public class ProductController {
             // update image
             if (!file.isEmpty()) {
                 String image = this.uploadService.handleUploadFile(file, "product");
-                product.setImage(image);
+                currentProduct.setImage(image);
             }
+
             currentProduct.setName(product.getName());
+            currentProduct.setLongDescription(product.getLongDescription());
+            currentProduct.setShortDescription(product.getShortDescription());
             currentProduct.setPrice(product.getPrice());
             currentProduct.setQuantity(product.getQuantity());
-            currentProduct.setDescription(product.getDescription());
             currentProduct.setCategory(product.getCategory());
 
-            this.productService.updateProduct(currentProduct);
+            this.productService.createProduct(currentProduct);
         }
         return "redirect:/admin/product";
     }

@@ -44,7 +44,8 @@
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item"><strong>ID:</strong> ${product.id}</li>
                                                 <li class="list-group-item"><strong>Name:</strong> ${product.name}</li>
-                                                <li class="list-group-item"><strong>Description:</strong> ${product.description}</li>
+                                                <li class="list-group-item"><strong>Long Description:</strong> ${product.longDescription}</li>
+                                                <li class="list-group-item"><strong>Short Description:</strong> ${product.shortDescription}</li>
                                                 <li class="list-group-item"><strong>Price:</strong> ${product.price}</li>
                                                 <li class="list-group-item"><strong>Quantity:</strong> ${product.quantity}</li>
                                                 <li class="list-group-item"><strong>Category:</strong> ${product.category}</li>

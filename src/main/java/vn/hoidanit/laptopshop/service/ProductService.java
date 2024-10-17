@@ -24,15 +24,15 @@ public class ProductService {
         return this.productRepository.findAll();
     }
 
-    public Product getProductById(Long id) {
+    public Product getProductById(long id) {
         return this.productRepository.findById(id).orElse(null);
     }
 
-    public void deleteProductById(Long id) {
+    public void deleteProductById(long id) {
         this.productRepository.deleteById(id);
     }
 
-    public void updateProduct(@Valid Product product) {
+    public void updateProduct(Product product) {
         this.productRepository.save(product);
     }
 }

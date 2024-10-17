@@ -17,7 +17,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotNull
     @NotEmpty(message = "Tên sản phẩm không được để trống")
@@ -25,8 +25,13 @@ public class Product {
 
     @NotNull
     @NotEmpty(message = "Mô tả không được để trống")
-    @Column(name = "description", columnDefinition = "VARCHAR(1000)")
-    private String description;
+    @Column(columnDefinition = "MEDIUMTEXT")
+    private String longDescription;
+
+    @NotNull
+    @NotEmpty(message = "Mô tả không được để trống")
+    @Column(columnDefinition = "MEDIUMTEXT")
+    private String shortDescription;
 
     @NotNull
     @DecimalMin(value = "0", message = "Giá phải lớn hơn 0")
@@ -39,19 +44,6 @@ public class Product {
     @NotNull
     private String category;
 
-//    @Column(name = "image_path")
     private String image;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", category='" + category + '\'' +
-                ", imagePath='" + image + '\'' +
-                '}';
-    }
 }
