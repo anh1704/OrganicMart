@@ -33,6 +33,7 @@ public class Product {
     @Column(columnDefinition = "MEDIUMTEXT")
     private String shortDescription;
 
+
     @NotNull
     @DecimalMin(value = "0", message = "Giá phải lớn hơn 0")
     private double price;
