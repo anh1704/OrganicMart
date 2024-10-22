@@ -2,11 +2,10 @@ package vn.hoidanit.laptopshop.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
+
 
 import java.util.List;
 
@@ -29,13 +28,13 @@ public class User {
     @NotEmpty(message = "Password can't be empty")
     private String password;
 
-    @NotEmpty(message = "Full name can't be empty")
+//    @NotEmpty(message = "Full name can't be empty")
     private String fullName;
 
-    @NotEmpty(message = "Address can't be empty")
+//    @NotEmpty(message = "Address can't be empty")
     private String address;
 
-    @NotEmpty(message = "Number phone can't be empty")
+//    @NotEmpty(message = "Number phone can't be empty")
     private String phone;
 
     private String avatar;

@@ -9,33 +9,41 @@
     <title>Đăng ký</title>
     <link href="/client/scss/register.scss" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
+    <link href="/css/styles.css" rel="stylesheet" />
 </head>
 <body>
 <div class="register-container">
     <div class="wrapper">
         <%--@elvariable id="registerUser" type=""--%>
         <form:form action="/register" method="post" modelAttribute="registerUser">
+            <c:set var="errorPassword">
+                <form:errors path="confirmPassword" cssClass="invalid-feedback" />
+            </c:set>
+            <c:set var="errorEmail">
+                <form:errors path="email" cssClass="invalid-feedback" />
+            </c:set>
             <h1>Register</h1>
             <div class="input-box">
-                <form:input type="text" placeholder="First name" path="firstName" />
-                <i class="fa fa-user-alt icon"></i>
+                <form:input class="form-control" type="text" placeholder="First name" path="firstName" />
+<%--                <i class="fa fa-user-alt icon"></i>--%>
             </div>
             <div class="input-box">
-                <form:input type="text" placeholder="Last name" path="lastName" />
-                <i class="fa fa-user-alt icon"></i>
+                <form:input class="form-control" type="text" placeholder="Last name" path="lastName" />
+<%--                <i class="fa fa-user-alt icon"></i>--%>
             </div>
             <div class="input-box">
-                <form:input type="email" placeholder="Email" path="email" />
-                <i class="fa fa-envelope icon"></i>
+                <form:input class="form-control ${not empty errorEmail ? 'is-invalid' : ''}" type="email" placeholder="Email" path="email"  />
+<%--                <i class="fa fa-envelope icon"></i>--%>
+                ${errorEmail}
             </div>
             <div class="input-box">
-                <form:input type="password" path="password" placeholder="Password" />
-                <i class="fa fa-eye icon" onclick="togglePasswordVisibility()"></i>
+                <form:input class="form-control ${not empty errorPassword ? 'is-invalid' : ''}" type="password" path="password" placeholder="Password" />
+<%--                <i class="fa fa-eye icon" onclick="togglePasswordVisibility()"></i>--%>
+                ${errorPassword}
             </div>
             <div class="input-box">
-                <form:input type="password" path="confirmPassword" placeholder="Confirm password" />
-                <i class="fa fa-eye icon" onclick="togglePasswordVisibility()"></i>
+                <form:input class="form-control" type="password" path="confirmPassword" placeholder="Confirm password" />
+<%--                <i class="fa fa-eye icon" onclick="togglePasswordVisibility()"></i>--%>
             </div>
             <button type="submit" class="submit-button">Register</button>
             <div class="register-link">
