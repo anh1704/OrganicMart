@@ -9,38 +9,28 @@
     <title>Đăng nhập</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="/client/scss/login.scss" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet" />
 </head>
 <body>
 <div class="login-container">
     <div class="wrapper">
+        <h1>Login</h1>
         <form:form action="/login" method="post">
-            <h1>Login</h1>
-
-            <!-- Hiển thị thông báo lỗi nếu có -->
-            <c:if test="${not empty errorMessage}">
-                <p class="error-message">${errorMessage}</p>
+            
+            <c:if test="${param.error != null}">
+                <div class="my-2" style="color: red">Invalid email or password</div>
             </c:if>
 
             <div class="input-box">
-                <input
-                        type="text"
-                        name="email"
-                        placeholder="Email"
-                        required
-                />
-                <!-- Icon người dùng -->
-                <i class="fa fa-envelope icon"></i>
+                <input class="form-control" type="text" name="username" placeholder="Email" required />
             </div>
 
             <div class="input-box">
-                <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        required
-                />
-                <!-- Icon hiển thị mật khẩu -->
-                <i class="fa fa-eye icon" onclick="togglePasswordVisibility()"></i>
+                <input class="form-control" type="password" name="password" placeholder="Password" required />
+            </div>
+
+            <div>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             </div>
 
             <button type="submit">Login</button>
