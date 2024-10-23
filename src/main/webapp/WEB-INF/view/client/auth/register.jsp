@@ -16,6 +16,9 @@
     <div class="wrapper">
         <%--@elvariable id="registerUser" type=""--%>
         <form:form action="/register" method="post" modelAttribute="registerUser">
+            <c:set var="errorFirstname">
+                <form:errors path="firstName" cssClass="invalid-feedback" />
+            </c:set>
             <c:set var="errorPassword">
                 <form:errors path="confirmPassword" cssClass="invalid-feedback" />
             </c:set>
@@ -24,8 +27,9 @@
             </c:set>
             <h1>Register</h1>
             <div class="input-box">
-                <form:input class="form-control" type="text" placeholder="First name" path="firstName" />
+                <form:input class="form-control ${not empty errorFirstname ? 'is-invalid' : ''}" type="text" placeholder="First name" path="firstName" />
 <%--                <i class="fa fa-user-alt icon"></i>--%>
+                ${errorFirstname}
             </div>
             <div class="input-box">
                 <form:input class="form-control" type="text" placeholder="Last name" path="lastName" />

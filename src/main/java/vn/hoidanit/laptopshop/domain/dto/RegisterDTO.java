@@ -1,13 +1,24 @@
 package vn.hoidanit.laptopshop.domain.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import vn.hoidanit.laptopshop.service.validator.RegisterChecked;
 
 @RegisterChecked
 public class RegisterDTO {
+
+    @Size(min = 3, message = "First name must be at least 3 characters")
     private String firstName;
+
     private String lastName;
+
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
     private String email;
+
     private String password;
+
+    @Size(min = 6, message = "Password must be at least 6 characters")
     private String confirmPassword;
 
     public String getFirstName() {
