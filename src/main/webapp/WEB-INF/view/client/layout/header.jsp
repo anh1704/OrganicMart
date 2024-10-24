@@ -48,7 +48,7 @@
                                  <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden"
                                  src="/images/product/"/>
                                  <div class="text-center my-3">
-                                     <c:out value="${pageContext.request.userPrincipal.name}"></c:out>
+                                     <c:out value="${sessionScope.fullName}"></c:out>
                                  </div>
                              </li>
                              <li><a class="dropdown-item" href="#">Quan ly tai khoan</a></li>

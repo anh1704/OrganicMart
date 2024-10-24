@@ -29,15 +29,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @RequestMapping("/")
-    public String getHomePage(Model model) {
-        List<User> allUsers = this.userService.getAllUsersByEmail("hiiii@gmail.com");
-        System.out.println(allUsers);
-        model.addAttribute("test", "test");  // 1. key: tien to muon truy cap ben view, 2. value: gia tri cua bien
-        model.addAttribute("name", "Hoi Dan IT");
-        return "hello";
-    }
-
     @GetMapping("/admin/user")
     public String getUserPage(Model model) { // Model là đối tượng để truyền dữ liệu từ controller sang view
         List<User> allUsers = this.userService.getAllUsers();
