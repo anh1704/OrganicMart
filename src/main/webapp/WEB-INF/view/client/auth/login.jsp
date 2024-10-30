@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="/client/scss/login.scss" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/client/css/login.css" rel="stylesheet">
+<%--    <link href="/client/css/styles.css" rel="stylesheet" />--%>
 </head>
 <body>
 <div class="login-container">
