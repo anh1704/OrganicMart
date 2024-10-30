@@ -8,8 +8,6 @@ import vn.hoidanit.laptopshop.domain.Product;
 import java.util.List;
 
 public interface CartDetailRepository extends JpaRepository<CartDetail, Long> {
-    List<CartDetail> findByCart(Cart cart);
+    boolean existsByCartAndProduct(Cart cart, Product product);
     CartDetail findByCartAndProduct(Cart cart, Product product);
-    void deleteByCartAndProduct(Cart cart, Product product);
-    void deleteByCart(Cart cart);
 }
