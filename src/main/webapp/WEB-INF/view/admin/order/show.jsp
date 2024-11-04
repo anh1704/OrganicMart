@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
     <meta name="author" content="Hỏi Dân IT" />
-    <title>Dashboard - Hỏi Dân IT</title>
+    <title>Dashboard</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -26,15 +27,68 @@
                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                     <li class="breadcrumb-item active">Orders</li>
                 </ol>
-                <div>Table order</div>
+                <div><h1>Table order</h1></div>
             </div>
+            <hr />
+            <table class=" table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Total Price</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="order" items="${orders}">
+                    <tr>
+                        <th>${order.id}</th>
+                        <td>
+                            <fmt:formatNumber type="number"
+                                              value="${order.totalPrice}" /> đ
+                        </td>
+                        <td>${order.user.fullName}</td>
+                        <td>${order.status}</td>
+                        <td>
+                            <a href="/admin/order/${order.id}"
+                               class="btn btn-success">View</a>
+                            <a href="/admin/order/update/${order.id}"
+                               class="btn btn-warning">Update</a>
+                            <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete(${order.id})">Delete</a>
+                        </td>
+                    </tr>
+
+                </c:forEach>
+
+                </tbody>
+            </table>
+
         </main>
         <jsp:include page="../layout/footer.jsp" />
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+<script src="/client/js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(orderId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/admin/order/delete/' + orderId;
+            }
+        })
+    }
+</script>
 </body>
 
 </html>

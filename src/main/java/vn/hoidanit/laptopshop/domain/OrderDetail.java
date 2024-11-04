@@ -15,7 +15,7 @@ public class OrderDetail {
     private Long id;
 
     private Long quantity;
-    private Double totalPrice;
+    private Double price;
 
     // nhieu order detail thuoc ve 1 order
     @ManyToOne

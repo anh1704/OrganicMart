@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +55,11 @@
                                                                     <th>${product.id}</th>
                                                                     <td>${product.name}</td>
                                                                     <td style="width: 500px">${product.longDescription}</td>
-                                                                    <td>${product.price}</td>
+                                                                    <td>
+                                                                        <fmt:formatNumber type="number"
+                                                                                           value="${product.price}" /> đ
+                                                                    </td>
+
                                                                     <td>${product.quantity}</td>
                                                                     <td>${product.category}</td>
                                                                     <td>
