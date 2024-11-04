@@ -16,6 +16,11 @@ public class Order {
     private Long id;
     private Double totalPrice;
 
+    private String receiverName;
+    private String receiverAddress;
+    private String receiverPhone;
+    private String status;
+
     // nhieu order thuoc ve 1 user
     @ManyToOne
     @JoinColumn(name = "user_id")  // khoa ngoai - foreign key

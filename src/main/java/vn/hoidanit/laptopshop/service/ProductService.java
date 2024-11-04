@@ -2,13 +2,8 @@ package vn.hoidanit.laptopshop.service;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
-import vn.hoidanit.laptopshop.domain.Cart;
-import vn.hoidanit.laptopshop.domain.CartDetail;
-import vn.hoidanit.laptopshop.domain.Product;
-import vn.hoidanit.laptopshop.domain.User;
-import vn.hoidanit.laptopshop.repository.CartDetailRepository;
-import vn.hoidanit.laptopshop.repository.CartRepository;
-import vn.hoidanit.laptopshop.repository.ProductRepository;
+import vn.hoidanit.laptopshop.domain.*;
+import vn.hoidanit.laptopshop.repository.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,16 +15,20 @@ public class ProductService {
     private final CartRepository cartRepository;
     private final CartDetailRepository cartDetailRepository;
     private final UserService userService;
+    private final OrderRepository orderRepository;
+    private final OrderDetailRepository orderDetailRepository;
 
     public ProductService(
             ProductRepository productRepository,
             CartRepository cartRepository,
-            CartDetailRepository cartDetailRepository, UserService userService
+            CartDetailRepository cartDetailRepository, UserService userService, OrderRepository orderRepository, OrderDetailRepository orderDetailRepository
     ) {
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
         this.cartDetailRepository = cartDetailRepository;
         this.userService = userService;
+        this.orderRepository = orderRepository;
+        this.orderDetailRepository = orderDetailRepository;
     }
 
     public Product createProduct(Product product) {
@@ -118,8 +117,62 @@ public class ProductService {
                 this.cartRepository.deleteById(currentCart.getId());
                 session.setAttribute("sum", 0);
             }
-
-
         }
+    }
+
+    public void handleUpdateCartBeforeCheckout(List<CartDetail> cartDetails) {
+        for (CartDetail cartDetail : cartDetails) {
+            Optional<CartDetail> cartDetailOptional = this.cartDetailRepository.findById(cartDetail.getId());
+            if (cartDetailOptional.isPresent()) {
+                CartDetail currentCartDetail = cartDetailOptional.get();
+                currentCartDetail.setQuantity(cartDetail.getQuantity());
+                this.cartDetailRepository.save(currentCartDetail);
+            }
+        }
+    }
+
+    public void handlePlaceOrder(
+            User currentUser,
+            HttpSession session,
+            String receiverName,
+            String receiverAddress,
+            String receiverPhone
+    ){
+
+        // create order
+        Order order = new Order();
+        order.setUser(currentUser);
+        order.setReceiverName(receiverName);
+        order.setReceiverAddress(receiverAddress);
+        order.setReceiverPhone(receiverPhone);
+        this.orderRepository.save(order);
+
+        // create order detail
+        // step 1: get cart by user
+        Cart cart = this.cartRepository.findByUser(currentUser);
+        if (cart != null) {
+            List<CartDetail> cartDetails = cart.getCartDetails();
+            if (cartDetails != null){
+                for (CartDetail cartDetail : cartDetails) {
+                    OrderDetail orderDetail = new OrderDetail();
+                    orderDetail.setOrder(order);
+                    orderDetail.setProduct(cartDetail.getProduct());
+                    orderDetail.setTotalPrice(cartDetail.getPrice());
+                    orderDetail.setQuantity((long) cartDetail.getQuantity());
+                    this.orderDetailRepository.save(orderDetail);
+                }
+
+                // step 2: delete cart detail and cart
+                for (CartDetail cartDetail : cartDetails) {
+                    this.cartDetailRepository.deleteById(cartDetail.getId());
+                }
+
+                this.cartRepository.deleteById(cart.getId());
+
+                // step 3: update session
+                session.setAttribute("sum", 0);
+            }
+        }
+
     }
 }
