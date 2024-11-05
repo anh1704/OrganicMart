@@ -54,7 +54,7 @@ public class ProductService {
         this.productRepository.save(product);
     }
 
-    public void handleAddProductToCart(String email, Long productId, HttpSession session) {
+    public void handleAddProductToCart(String email, Long productId,  Long quantity, HttpSession session) {
 
         User user = this.userService.getUserByEmail(email);
         if (user != null){
@@ -79,7 +79,7 @@ public class ProductService {
                     newDetail.setCart(cart);
                     newDetail.setProduct(realProduct);
                     newDetail.setPrice(realProduct.getPrice());
-                    newDetail.setQuantity(1);
+                    newDetail.setQuantity(Math.toIntExact(quantity));
                     this.cartDetailRepository.save(newDetail);
 
                     // update cart sum
@@ -88,7 +88,7 @@ public class ProductService {
                     this.cartRepository.save(cart);
                     session.setAttribute("sum", s);
                 } else {
-                    oldDetail.setQuantity(oldDetail.getQuantity() + 1);
+                    oldDetail.setQuantity((int) (oldDetail.getQuantity() + quantity));
                     this.cartDetailRepository.save(oldDetail);
                 }
             }

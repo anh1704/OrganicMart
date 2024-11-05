@@ -18,19 +18,10 @@
             </button>
             <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="/" class="nav-item nav-link active">Home</a>
-                    <a href="shop.html" class="nav-item nav-link">Shop</a>
-                    <a href="shop-detail.html" class="nav-item nav-link">Shop Detail</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                            <a href="/cart" class="dropdown-item">Cart</a>
-                            <a href="chackout.html" class="dropdown-item">Chackout</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="/" class="nav-item nav-link active">Trang chủ</a>
+                    <a href="shop.html" class="nav-item nav-link">Sản phẩm</a>
+                    <a href="shop-detail.html" class="nav-item nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
                 </div>
                 <div class="d-flex m-3 me-0">
                     <c:if test="${not empty pageContext.request.userPrincipal}">
@@ -53,22 +44,22 @@
                                      <c:out value="${sessionScope.fullName}"></c:out>
                                  </div>
                              </li>
-                             <li><a class="dropdown-item" href="#">Quan ly tai khoan</a></li>
-                             <li><a class="dropdown-item" href="#">Lich su mua hang</a></li>
+                             <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
+                             <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
                              <li>
                                  <hr class="dropdown-divider">
                              </li>
                              <li>
                                  <form method="post" action="/logout">
                                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                     <button class="dropdown-item" >Dang xuat</button>
+                                     <button class="dropdown-item" >Đăng xuất</button>
                                  </form>
                              </li>
                          </ul>
                      </div>
                     </c:if>
                     <c:if test="${empty pageContext.request.userPrincipal}">
-                        <a href="/login" class="btn btn-primary" style="color: white">Login</a>
+                        <a href="/login" class="btn btn-primary" style="color: white">Đăng nhập</a>
                     </c:if>
                 </div>
 

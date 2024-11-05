@@ -39,7 +39,7 @@ public class OrderService {
         }
     }
 
-    public List<Order> fetchOrdersByUserId(User user) {
+    public List<Order> fetchOrdersByUser(User user) {
         return this.orderRepository.findByUser(user);
     }
 
@@ -56,5 +56,4 @@ public class OrderService {
         }
         this.orderRepository.deleteById(id);
     }
-
 }
