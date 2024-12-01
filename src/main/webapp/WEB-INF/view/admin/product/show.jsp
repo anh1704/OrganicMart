@@ -49,31 +49,58 @@
                                         <th scope="col">Action</th>
                                     </tr>
                                     </thead>
-                                                            <tbody>
-                                                            <c:forEach var="product" items="${products}" >   <%-- var="user": tung user trong list users, items="${users}": list users (bien duoc truyen tu controller)--%>
-                                                                <tr>
-                                                                    <th>${product.id}</th>
-                                                                    <td>${product.name}</td>
-                                                                    <td style="width: 500px">${product.longDescription}</td>
-                                                                    <td>
-                                                                        <fmt:formatNumber type="number"
-                                                                                           value="${product.price}" /> đ
-                                                                    </td>
+                                    <tbody>
+                                    <c:forEach var="product" items="${products}" >   <%-- var="user": tung user trong list users, items="${users}": list users (bien duoc truyen tu controller)--%>
+                                        <tr>
+                                            <th>${product.id}</th>
+                                            <td>${product.name}</td>
+                                            <td style="width: 500px">${product.longDescription}</td>
+                                            <td>
+                                                <fmt:formatNumber type="number"
+                                                                  value="${product.price}" /> đ
+                                            </td>
 
-                                                                    <td>${product.quantity}</td>
-                                                                    <td>${product.category}</td>
-                                                                    <td>
-                                                                        <img src="/images/product/${product.image}" alt="${product.name}" style="max-width: 100px; max-height: 100px;" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="/admin/product/${product.id}" class="btn btn-success">View</a>
-                                                                        <a href="/admin/product/update/${product.id}" class="btn btn-warning">Update</a>
-                                                                        <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete(${product.id})">Delete</a>
-                                                                    </td>
-                                                                </tr>
-                                                            </c:forEach>
-                                                            </tbody>
+                                            <td>${product.quantity}</td>
+                                            <td>${product.category}</td>
+                                            <td>
+                                                <img src="/images/product/${product.image}" alt="${product.name}" style="max-width: 100px; max-height: 100px;" />
+                                            </td>
+                                            <td>
+                                                <a href="/admin/product/${product.id}" class="btn btn-success">View</a>
+                                                <a href="/admin/product/update/${product.id}" class="btn btn-warning">Update</a>
+                                                <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete(${product.id})">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
                                 </table>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item">
+                                            <a class="${1 eq currentPage ? 'disabled page-link' : 'page-link'}"
+                                               href="/admin/product?page=${currentPage - 1}"
+                                               aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
+                                            <li class="page-item">
+                                                <a class="${(loop.index + 1) eq currentPage ? 'active page-link' : 'page-link'}"
+                                                   href="/admin/product?page=${loop.index + 1}">
+                                                        ${loop.index + 1}
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+                                        <li class="page-item">
+                                            <a class="${totalPages eq currentPage ? 'disabled page-link' : 'page-link'}"
+                                               href="/admin/product?page=${currentPage + 1}"
+                                               aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
                             </div>
                         </div>
                     </div>

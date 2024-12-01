@@ -1,6 +1,9 @@
 package vn.hoidanit.laptopshop.controller.admin;
 
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,9 +28,13 @@ public class ProductController {
 
     // get all product
     @GetMapping("/admin/product")
-    public String getProduct(Model model){
-        List<Product> allProducts = this.productService.getAllProducts();
-        model.addAttribute("products", allProducts);
+    public String getProduct(Model model, @RequestParam(value = "page", defaultValue = "1") int page){
+        Pageable pageable = PageRequest.of(page - 1,3);
+        Page<Product> allProducts = this.productService.getAllProducts(pageable);
+        List<Product> productList = allProducts.getContent();
+        model.addAttribute("products", productList);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", allProducts.getTotalPages());
         return "admin/product/show";
     }
 
