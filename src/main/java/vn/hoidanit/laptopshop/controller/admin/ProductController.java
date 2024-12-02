@@ -14,6 +14,7 @@ import vn.hoidanit.laptopshop.service.ProductService;
 import vn.hoidanit.laptopshop.service.UploadService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ProductController {
@@ -28,7 +29,18 @@ public class ProductController {
 
     // get all product
     @GetMapping("/admin/product")
-    public String getProduct(Model model, @RequestParam(value = "page", defaultValue = "1") int page){
+    public String getProduct(Model model, @RequestParam(value = "page", defaultValue = "1")Optional<String> pageOptional){
+        int page = 1;
+        try {
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            } else {
+
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         Pageable pageable = PageRequest.of(page - 1,3);
         Page<Product> allProducts = this.productService.getAllProducts(pageable);
         List<Product> productList = allProducts.getContent();

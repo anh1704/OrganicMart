@@ -1,6 +1,9 @@
 package vn.hoidanit.laptopshop.controller.admin;
 
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import vn.hoidanit.laptopshop.service.UserService;
 
 import java.io.*;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -30,9 +34,22 @@ public class UserController {
     }
 
     @GetMapping("/admin/user")
-    public String getUserPage(Model model) { // Model là đối tượng để truyền dữ liệu từ controller sang view
-        List<User> allUsers = this.userService.getAllUsers();
+    public String getUserPage(Model model, @RequestParam(value = "page")Optional<String> pageOptional) { // Model là đối tượng để truyền dữ liệu từ controller sang view
+        int page = 1;
+        try {
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Pageable pageable = PageRequest.of(page - 1, 3);
+        Page<User> userPage = this.userService.getAllUsers(pageable);
+        List<User> allUsers = userPage.getContent();
+
         model.addAttribute("users", allUsers);  // users: giá trị truyền sang view  allUsers: giá trị cần truyền (gan vao key)
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", userPage.getTotalPages());
         return "admin/user/show";  // đường dẫn đến file view
     }
 
