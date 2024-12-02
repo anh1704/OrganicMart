@@ -2,6 +2,9 @@ package vn.hoidanit.laptopshop.controller.client;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +16,7 @@ import vn.hoidanit.laptopshop.service.ProductService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ItemController {
@@ -21,6 +25,29 @@ public class ItemController {
 
     public ItemController(ProductService productService) {
         this.productService = productService;
+    }
+
+    @GetMapping("/products")
+    public String getProductsPage(
+            Model model,
+            @RequestParam(value = "page")Optional<String> pageOptional
+//            @RequestParam(value = "name") Optional<String> nameOptional
+    ) {
+        int page = 1;
+        try {
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            }
+        } catch (Exception e){
+
+        }
+        Pageable pageable = PageRequest.of(page - 1, 6);
+        Page<Product> products = this.productService.getAllProducts(pageable);
+        List<Product> productList = products.getContent();
+        model.addAttribute("products", productList);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", products.getTotalPages());
+        return "client/product/show";
     }
 
     @GetMapping("/product/{id}")

@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
                     <a href="/" class="nav-item nav-link active">Trang chủ</a>
-                    <a href="shop.html" class="nav-item nav-link">Sản phẩm</a>
+                    <a href="/products" class="nav-item nav-link">Sản phẩm</a>
                     <a href="shop-detail.html" class="nav-item nav-link">Về chúng tôi</a>
                     <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
                 </div>
