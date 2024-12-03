@@ -30,42 +30,41 @@
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
                 <div class="footer-item">
-                    <h4 class="text-light mb-3">Why People Like us!</h4>
-                    <p class="mb-4">typesetting, remaining essentially unchanged. It was
-                        popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
-                    <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
+                    <h4 class="text-light mb-3">Tại sao khách hàng yêu thích chúng tôi?</h4>
+                    <p class="mb-4">Chúng tôi cung cấp các sản phẩm tươi sạch, đảm bảo chất lượng với quy trình sản xuất hiện đại, mang lại sự hài lòng cho khách hàng.</p>
+                    <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Xem thêm</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="d-flex flex-column text-start footer-item">
-                    <h4 class="text-light mb-3">Shop Info</h4>
-                    <a class="btn-link" href="">About Us</a>
-                    <a class="btn-link" href="">Contact Us</a>
-                    <a class="btn-link" href="">Privacy Policy</a>
-                    <a class="btn-link" href="">Terms & Condition</a>
-                    <a class="btn-link" href="">Return Policy</a>
-                    <a class="btn-link" href="">FAQs & Help</a>
+                    <h4 class="text-light mb-3">Thông tin cửa hàng</h4>
+                    <a class="btn-link" href="">Giới thiệu</a>
+                    <a class="btn-link" href="">Liên hệ</a>
+                    <a class="btn-link" href="">Chính sách bảo mật</a>
+                    <a class="btn-link" href="">Điều khoản sử dụng</a>
+                    <a class="btn-link" href="">Chính sách đổi trả</a>
+                    <a class="btn-link" href="">Hỏi đáp & Hỗ trợ</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="d-flex flex-column text-start footer-item">
-                    <h4 class="text-light mb-3">Account</h4>
-                    <a class="btn-link" href="">My Account</a>
-                    <a class="btn-link" href="">Shop details</a>
-                    <a class="btn-link" href="">Shopping Cart</a>
-                    <a class="btn-link" href="">Wishlist</a>
-                    <a class="btn-link" href="">Order History</a>
-                    <a class="btn-link" href="">International Orders</a>
+                    <h4 class="text-light mb-3">Tài khoản</h4>
+                    <a class="btn-link" href="">Tài khoản của tôi</a>
+                    <a class="btn-link" href="">Chi tiết cửa hàng</a>
+                    <a class="btn-link" href="">Giỏ hàng</a>
+                    <a class="btn-link" href="">Danh sách yêu thích</a>
+                    <a class="btn-link" href="">Lịch sử đặt hàng</a>
+                    <a class="btn-link" href="">Đơn hàng quốc tế</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-item">
-                    <h4 class="text-light mb-3">Contact</h4>
-                    <p>Address: 1429 Netus Rd, NY 48247</p>
-                    <p>Email: Example@gmail.com</p>
-                    <p>Phone: +0123 4567 8910</p>
-                    <p>Payment Accepted</p>
-                    <img src="/client/img/payment.png" class="img-fluid" alt="">
+                    <h4 class="text-light mb-3">Liên hệ</h4>
+                    <p>Địa chỉ: 15 Đường Đặng Tất</p>
+                    <p>Email: fruitables@gmail.com</p>
+                    <p>Điện thoại: +0123 4567 8910</p>
+                    <p>Phương thức thanh toán</p>
+                    <img src="/client/img/payment.png" class="img-fluid" alt="Phương thức thanh toán">
                 </div>
             </div>
         </div>
