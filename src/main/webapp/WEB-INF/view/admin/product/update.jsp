@@ -111,9 +111,9 @@
                                 <div class="mb-3 col-12 col-md-12">
                                     <label class="form-label">Category:</label>
                                     <form:select class="form-select" path="category">
-                                        <form:option value="Rau, củ, quả hữu cơ">Rau, củ, quả hữu cơ</form:option>
+                                        <form:option value="Rau, củ, quả">Rau, củ, quả</form:option>
                                         <form:option value="Trái cây">Trái cây</form:option>
-                                        <form:option value="Thịt, cá, hải sản">Thịt, cá, hải sản</form:option>
+                                        <form:option value="Hải sản">Hải sản</form:option>
                                     </form:select>
                                 </div>
 

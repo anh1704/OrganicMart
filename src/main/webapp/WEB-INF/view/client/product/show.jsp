@@ -50,158 +50,178 @@
 </div>
 <!-- Single Page Header End -->
 <!-- Fruits Shop Start-->
-<div class="container-fluid fruite py-5">
+
+<!-- Single Product Start -->
+<div class="container-fluid py-5 mt-5">
     <div class="container py-5">
-        <div class="row g-4">
-            <div class="col-lg-12">
-                <div class="row g-4">
-                    <div class="col-xl-3">
-                        <div class="input-group w-100 mx-auto d-flex">
-                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+        <div class="row g-4 mb-5">
+            <div class="row g-4 fruite">
+                <div class="col-12 col-md-4">
+                    <div class="row g-4">
+                        <div class="col-12" id="categoryFilter">
+                            <div class="mb-2"><b>Danh mục</b></div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="category-1"
+                                       value="Rau, củ, quả">
+                                <label class="form-check-label" for="category-1">Rau, củ, quả</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="category-2"
+                                       value="Trái cây">
+                                <label class="form-check-label" for="category-2">Trái cây</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="category-3"
+                                       value="Hải sản">
+                                <label class="form-check-label" for="category-3">Hải sản</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6"></div>
-                    <div class="col-xl-3">
-                        <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                            <label for="fruits">Default Sorting:</label>
-                            <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="">
-                                <option value="volvo">Nothing</option>
-                                <option value="saab">Popularity</option>
-                                <option value="opel">Organic</option>
-                                <option value="audi">Fantastic</option>
-                            </select>
+
+                        <div class="col-12" id="priceFilter">
+                            <div class="mb-2"><b>Mức giá</b></div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="price-2"
+                                       value="duoi-100">
+                                <label class="form-check-label" for="price-2">Dưới 100.000đ </label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="price-3"
+                                       value="100-200">
+                                <label class="form-check-label" for="price-3">Từ 100.000đ - 150.000đ</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="price-4"
+                                       value="200-300">
+                                <label class="form-check-label" for="price-4">Từ 200.000đ - 300.000đ</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="price-5"
+                                       value="300-500">
+                                <label class="form-check-label" for="price-5">Trên 300.000đ</label>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12">
+                            <div class="mb-2"><b>Sắp xếp</b></div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="sort-1"
+                                       value="gia-tang-dan" name="radio-sort">
+                                <label class="form-check-label" for="sort-1">Giá tăng dần</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="sort-2"
+                                       value="gia-giam-dan" name="radio-sort">
+                                <label class="form-check-label" for="sort-2">Giá giảm dần</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="sort-3" checked
+                                       value="gia-nothing" name="radio-sort">
+                                <label class="form-check-label" for="sort-3">Không sắp xếp</label>
+                            </div>
+
+                        </div>
+                        <div class="col-12">
+                            <button
+                                    class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4"
+                                    id="btnFilter">
+                                Lọc Sản Phẩm
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="row g-4">
-                    <div class="col-lg-3">
-                        <div class="row g-4">
-                            <div class="col-lg-12">
-                                <div class="mb-3">
-                                    <h4>Categories</h4>
-                                    <ul class="list-unstyled fruite-categorie">
-                                        <li>
-                                            <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
-                                                <span>(3)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Oranges</a>
-                                                <span>(5)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Strawbery</a>
-                                                <span>(2)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Banana</a>
-                                                <span>(8)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Pumpkin</a>
-                                                <span>(5)</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="mb-3">
-                                    <h4 class="mb-2">Price</h4>
-                                    <input type="range" class="form-range w-100" id="rangeInput" name="rangeInput" min="0" max="500" value="0" oninput="amount.value=rangeInput.value">
-                                    <output id="amount" name="amount" min-velue="0" max-value="500" for="rangeInput">0</output>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="mb-3">
-                                    <h4>Additional</h4>
-                                    <div class="mb-2">
-                                        <input type="radio" class="me-2" id="Categories-1" name="Categories-1" value="Beverages">
-                                        <label for="Categories-1"> Organic</label>
+                <div class="col-12 col-md-8 text-center">
+                    <div class="row g-4">
+                        <c:if test="${totalPages ==  0}">
+                            <div>Không tìm thấy sản phẩm</div>
+                        </c:if>
+                        <c:forEach var="product" items="${products}">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="rounded position-relative fruite-item img-fluid w-100 rounded-top" style="border: 1px solid #ffb524">
+                                    <div class="fruite-img">
+                                        <img src="/images/product/${product.image}"
+                                             class="img-fluid w-100 rounded-top" alt="">
                                     </div>
-                                    <div class="mb-2">
-                                        <input type="radio" class="me-2" id="Categories-2" name="Categories-1" value="Beverages">
-                                        <label for="Categories-2"> Fresh</label>
+                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                         style="top: 10px; left: 10px;">${product.category}
                                     </div>
-                                    <div class="mb-2">
-                                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Beverages">
-                                        <label for="Categories-3"> Sales</label>
-                                    </div>
-                                    <div class="mb-2">
-                                        <input type="radio" class="me-2" id="Categories-4" name="Categories-1" value="Beverages">
-                                        <label for="Categories-4"> Discount</label>
-                                    </div>
-                                    <div class="mb-2">
-                                        <input type="radio" class="me-2" id="Categories-5" name="Categories-1" value="Beverages">
-                                        <label for="Categories-5"> Expired</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="row g-4 justify-content-center">
-                            <div class="row g-4 justify-content-center">
-                                <c:forEach var="product" items="${products}">
-                                    <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item img-fluid w-100 h-auto rounded-top" style="border: 1px solid #ffb524">
-                                            <div class="fruite-img">
-                                                <img src="/images/product/${product.image}" class="img-fluid w-100 rounded-top" alt="${product.name}">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">${product.category}</div>
-                                            <div class="p-4 border-top-0">
-                                                <h4>
-                                                    <a href="/product/${product.id}">
-                                                            ${product.name}
-                                                    </a>
-                                                </h4>
-                                                <p>${product.shortDescription}</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap justify-content-center flex-column">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">
-                                                        <fmt:formatNumber type="number" value="${product.price}" /> đ/kg
-                                                    </p>
-                                                    <form action="/add-product-to-cart/${product.id}" method="post">
-                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                                        <button class="btnAddToCartHomepage mx-auto btn border border-secondary rounded-pill px-3 text-primary">
-                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                            Add to cart
-                                                        </button>
+                                    <div
+                                            class="p-4 border-top-0">
+                                        <h4 style="font-size: 15px;">
+                                            <a href="/product/${product.id}">
+                                                    ${product.name}
+                                            </a>
 
-                                                    </form>
-                                                </div>
-                                            </div>
+                                        </h4>
+                                        <p style="font-size: 13px;">
+                                                ${product.shortDescription}</p>
+                                        <div
+                                                class="d-flex  flex-lg-wrap justify-content-center flex-column">
+                                            <p style="font-size: 15px; text-align: center; width: 100%;"
+                                               class="text-dark  fw-bold mb-3">
+                                                <fmt:formatNumber type="number"
+                                                                  value="${product.price}" />
+                                                đ
+                                            </p>
+                                            <form action="/add-product-to-cart/${product.id}"
+                                                  method="post">
+                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                       value="${_csrf.token}" />
+
+                                                <button
+                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                        class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                    Add to cart
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
-                                </c:forEach>
-                            </div>
-                            <div class="col-12">
-                                <div class="pagination d-flex justify-content-center mt-5">
-                                    <a href="#" class="rounded">&laquo;</a>
-                                    <a href="#" class="active rounded">1</a>
-                                    <a href="#" class="rounded">2</a>
-                                    <a href="#" class="rounded">3</a>
-                                    <a href="#" class="rounded">4</a>
-                                    <a href="#" class="rounded">5</a>
-                                    <a href="#" class="rounded">6</a>
-                                    <a href="#" class="rounded">&raquo;</a>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
+
+
+                        <c:if test="${totalPages > 0}">
+                            <div class="pagination d-flex justify-content-center mt-5">
+                                <li class="page-item">
+                                    <a class="${1 eq currentPage ? 'disabled page-link' : 'page-link'}"
+                                       href="/products?page=${currentPage - 1}${queryString}"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
+                                    <li class="page-item">
+                                        <a class="${(loop.index + 1) eq currentPage ? 'active page-link' : 'page-link'}"
+                                           href="/products?page=${loop.index + 1}${queryString}">
+                                                ${loop.index + 1}
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                                <li class="page-item">
+                                    <a class="${totalPages eq currentPage ? 'disabled page-link' : 'page-link'}"
+                                       href="/products?page=${currentPage + 1}${queryString}"
+                                       aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Single Product End -->
 <!-- Fruits Shop End-->
 
 <jsp:include page="../layout/footer.jsp" />

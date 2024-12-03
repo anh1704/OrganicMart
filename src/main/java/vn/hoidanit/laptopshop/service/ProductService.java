@@ -3,9 +3,12 @@ package vn.hoidanit.laptopshop.service;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import vn.hoidanit.laptopshop.domain.*;
+import vn.hoidanit.laptopshop.domain.dto.ProductCriteriaDTO;
 import vn.hoidanit.laptopshop.repository.*;
+import vn.hoidanit.laptopshop.service.specification.ProductSpecs;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +47,59 @@ public class ProductService {
         return this.productRepository.findAll(pageable);
     }
 
+    public Page<Product> getAllProductsWithSpec(Pageable pageable, ProductCriteriaDTO productCriteriaDTO){
+        if (productCriteriaDTO.getCategory() == null && productCriteriaDTO.getPrice() == null){
+            return this.productRepository.findAll(pageable);
+        }
+        Specification<Product> combinedSpec = Specification.where(null);
+        if (productCriteriaDTO.getCategory() != null && productCriteriaDTO.getCategory().isPresent()){
+            Specification<Product> currentSpecs = ProductSpecs.matchListCategory(productCriteriaDTO.getCategory().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
+        if (productCriteriaDTO.getPrice() != null && productCriteriaDTO.getPrice().isPresent()) {
+            Specification<Product> currentSpecs = this.buildPriceSpecification(productCriteriaDTO.getPrice().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
+
+        return this.productRepository.findAll(combinedSpec, pageable);
+
+    }
+    // case 6
+    public Specification<Product> buildPriceSpecification(List<String> price) {
+        Specification<Product> combinedSpec = Specification.where(null);
+        for (String p : price) {
+            double min = 0;
+            double max = 0;
+
+            // Set the appropriate min and max based on the price range string
+            switch (p) {
+                case "duoi-100":
+                    min = 0;
+                    max = 100000;
+                    break;
+                case "100-200":
+                    min = 100000;
+                    max = 200000;
+                    break;
+                case "200-300":
+                    min = 200000;
+                    max = 300000;
+                    break;
+                case "300-500":
+                    min = 300000;
+                    max = 500000;
+                    break;
+            }
+
+            if (min != 0 && max != 0) {
+                Specification<Product> rangeSpec = ProductSpecs.matchMultiplePrice(min, max);
+                combinedSpec = combinedSpec.or(rangeSpec);
+            }
+        }
+
+        return combinedSpec;
+    }
+
     public Product getProductById(long id) {
         return this.productRepository.findById(id).orElse(null);
     }
@@ -51,11 +107,7 @@ public class ProductService {
     public void deleteProductById(long id) {
         this.productRepository.deleteById(id);
     }
-
-    public void updateProduct(Product product) {
-        this.productRepository.save(product);
-    }
-
+    
     public void handleAddProductToCart(String email, Long productId,  Long quantity, HttpSession session) {
 
         User user = this.userService.getUserByEmail(email);
